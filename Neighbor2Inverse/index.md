@@ -2,7 +2,6 @@
 layout: default
 title: Neighbor2Inverse
 hide_header: true
-description: "Noise2Inverse"
 ---
 
 # Noise2Inverse
