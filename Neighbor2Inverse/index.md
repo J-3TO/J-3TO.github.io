@@ -4,7 +4,7 @@ title: Neighbor2Inverse
 hide_header: true
 ---
 
-# Noise2Inverse
+# Neighbor2Inverse
 
 Here is my figure:
 

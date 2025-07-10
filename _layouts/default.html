@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+  </head>
+  <body>
+    {% if page.url == "/" %}
+      <h1>{{ site.title }}</h1>
+      <p>{{ site.description }}</p>
+    {% endif %}
+    <main>
+      {{ content }}
+    </main>
+  </body>
+</html>
