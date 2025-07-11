@@ -56,7 +56,7 @@ for Low-Dose ROI Phase Contrast CT". <br> Drag each slider to reveal the denoise
   aspect-ratio: 1 / 1;
   min-height: 120px;
   background: #222;
-  border-radius: 4px;
+  border-radius: 0;
   box-shadow: 0 1px 4px #0002;
   overflow: hidden;
 }
@@ -73,7 +73,7 @@ for Low-Dose ROI Phase Contrast CT". <br> Drag each slider to reveal the denoise
   object-fit: cover;
   user-select: none;
   pointer-events: none;
-  border-radius: 4px;
+  border-radius: 0;
 }
 .reveal-img-fg {
   z-index: 2;
