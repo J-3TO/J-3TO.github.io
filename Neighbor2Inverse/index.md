@@ -1,13 +1,21 @@
 <div class="header-content">
-  <h1>Neighbor2Inverse</h1>
-  <p>Below is the interactive version of Figure 6 of "Neighbor2Inverse: Self-Supervised Denoising
-for Low-Dose ROI Phase Contrast CT". <br> Drag each slider to reveal the denoised image.</p>
+  <h1>Neighbor2Inverse: Self-Supervised Denoising
+for Low-Dose ROI Phase Contrast CT</h1>
 </div>
 
 <style>
-.header-content {
-  padding-left: 32px;
-  padding-right: 32px;
+.header-content h1 {
+  font-size: 3.2em;
+  text-align: center;
+  margin-top: 32px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.grid-description {
+  font-size: 1.5em;
+  text-align: center;
+  margin: 32px 0 24px 0;
   color: #eee;
 }
 .row-labels {
@@ -224,6 +232,12 @@ body, html {
   box-shadow: 0 2px 8px #0008;
 }
 </style>
+
+<div class="grid-description">
+  Denoising results of Neighbor2Inverse with different exposure times and projection views.<br>
+  Interactive version of Figure 6.<br>
+  <b>Drag each slider to reveal the denoised image.</b>
+</div>
 
 <div class="grid-labels-wrapper">
   <div class="row-labels">
