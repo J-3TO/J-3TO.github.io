@@ -234,8 +234,8 @@ body, html {
 </style>
 
 <div class="grid-description">
-  <h2>Denoising results of Neighbor2Inverse with different exposure times and projection views.</h2><br>
-  Interactive version of Figure 6.<b>Drag each slider to reveal the denoised image.</b>
+  <h3 style="margin-bottom: 8px;">Denoising results of Neighbor2Inverse with different exposure times and projection views.</h3>
+  Interactive version of Figure 6. <b>Drag each slider to reveal the denoised image.</b>
 </div>
 
 <div class="grid-labels-wrapper">
