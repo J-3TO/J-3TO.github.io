@@ -3,6 +3,8 @@
 for Low-Dose ROI Phase Contrast CT</h1>
 </div>
 
+<hr>
+
 <style>
 .header-content h1 {
   font-size: 3.2em;
@@ -346,6 +348,7 @@ body, html {
   <!-- The next 7 cells will be filled by JS -->
 </div>
 
+<hr>
 
 
 
