@@ -231,7 +231,123 @@ body, html {
   border: 2px solid #eee;
   box-shadow: 0 2px 8px #0008;
 }
+
+.proj-denoising-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 12px; /* Add space between images */
+  width: calc(100vw - 72px);
+  margin: 8px auto 24px auto;
+  min-height: 180px;
+}
+.proj-cell {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #222;
+  overflow: hidden;
+}
+.proj-img, .proj-img-fg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+  border-radius: 0;
+}
+.proj-img-fg {
+  z-index: 2;
+  clip-path: inset(0 50% 0 0);
+  transition: clip-path 0.1s;
+}
+.proj-slider {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+.proj-slider input[type="range"] {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: auto;
+  cursor: col-resize;
+}
+.proj-slider .proj-drag-line {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: #fff;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+  transition: left 0.1s;
+}
+.proj-slider .proj-drag-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  border: 2px solid #888;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  pointer-events: none;
+  box-shadow: 0 1px 4px #0002;
+  transition: left 0.1s;
+}
+
+.proj-labels-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 12px;
+  width: calc(100vw - 72px);
+  margin: 0 auto 8px auto;
+}
+.proj-label {
+  text-align: center;
+  color: #eee;
+  font-size: 1.1em;
+  margin-top: 4px;
+  white-space: nowrap;
+}
 </style>
+
+<div class="grid-description">
+  <h3 style="margin-bottom: 8px;">Denoising results of different methods on projections measured with 15 ms exposure time.</h3>
+  Interactive version of Figure 2. <b>Drag each slider to reveal the denoised image.</b>
+</div>
+
+<div class="proj-labels-grid">
+  <div class="proj-label">200ms</div>
+  <div class="proj-label">Gaussian Filter</div>
+  <div class="proj-label">BM3D</div>
+  <div class="proj-label">ProjFakeNoiseNet</div>
+  <div class="proj-label">Nei2Nei U-Net L2</div>
+  <div class="proj-label">Nei2Nei U-Net L1</div>
+  <div class="proj-label">Nei2Nei KBNet L2</div>
+  <div class="proj-label">Nei2Nei KBNet L1</div>
+</div>
+
+<div class="proj-denoising-grid">
+  <div class="proj-cell">
+    <img src="./ProjDenoisingImages/denoisingProj_0.png" class="proj-img" alt="Reference">
+  </div>
+  <!-- The next 7 cells will be filled by JS -->
+</div>
+
+
+
 
 <div class="grid-description">
   <h3 style="margin-bottom: 8px;">Denoising results of Neighbor2Inverse with different exposure times and projection views.</h3>
@@ -258,7 +374,6 @@ body, html {
     <div class="col-label">15ms</div>
   </div>
   <div class="grid-container">
-    <!-- JS will fill this -->
   </div>
 </div>
 
@@ -313,4 +428,45 @@ for (let i = 1; i <= gridRows; i++) {
     setupRevealSlider(`slider${idx}`, `fg${idx}`, `line${idx}`, `circle${idx}`);
   }
 }
+
+
+const projGrid = document.querySelector('.proj-denoising-grid');
+
+// Add 7 slider cells (columns 2–8)
+for (let n = 2; n <= 8; n++) {
+  const cell = document.createElement('div');
+  cell.className = 'proj-cell';
+  cell.innerHTML = `
+    <img src="./ProjDenoisingImages/denoisingProj_1.png" class="proj-img">
+    <img src="./ProjDenoisingImages/denoisingProj_${n}.png" class="proj-img-fg" id="proj-fg${n}">
+    <div class="proj-slider">
+      <input type="range" min="0" max="100" value="50" id="proj-slider${n}">
+      <div class="proj-drag-line" id="proj-line${n}"></div>
+      <div class="proj-drag-circle" id="proj-circle${n}"></div>
+    </div>
+  `;
+  projGrid.appendChild(cell);
+}
+
+function setupProjSlider(n) {
+  const slider = document.getElementById(`proj-slider${n}`);
+  const fg = document.getElementById(`proj-fg${n}`);
+  const line = document.getElementById(`proj-line${n}`);
+  const circle = document.getElementById(`proj-circle${n}`);
+
+  function update() {
+    const val = slider.value;
+    fg.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
+    line.style.left = val + '%';
+    circle.style.left = val + '%';
+  }
+  slider.addEventListener('input', update);
+  window.addEventListener('resize', update);
+  update();
+}
+
+for (let n = 2; n <= 8; n++) {
+  setupProjSlider(n);
+}
+
 </script>
