@@ -14,8 +14,9 @@ h1, h3 {
 }
 
 h1 {
-  font-size: 2.6em;
+  font-size: 2.4em;  /* Reduced from 3.2em */
   letter-spacing: 0.5px;
+  margin-top: 24px;  /* Reduced from 32px */
 }
 
 .section-title {
@@ -175,18 +176,23 @@ a:hover {
 }
 
 .header-content h1 {
-  font-size: 3.2em;
-  text-align: center;
-  margin-top: 32px;
+  font-size: 2.4em;  /* Reduced from 3.2em */
+  margin-top: 24px;  /* Reduced from 32px */
   margin-bottom: 8px;
   font-weight: bold;
   letter-spacing: 1px;
 }
 .grid-description {
-  font-size: 1.5em;
+  font-size: 1.2em;  /* Reduced from 1.5em */
   text-align: center;
-  margin: 32px 0 24px 0;
+  margin: 32px auto 20px;
+  max-width: 800px;
   color: #eee;
+}
+.grid-description h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.4em;  /* Reduced from 1.8em */
+  color: #00bfff;
 }
 .row-labels {
   grid-row: 2;
@@ -500,4 +506,133 @@ body, html {
   font-size: 1.1em;
   margin-top: 4px;
   white-space: nowrap;
+}
+
+/* Add max-width constraints and center alignment */
+.slice-denoising-grid,
+.slice-denoising-labels-grid,
+.grid-labels-wrapper,
+.proj-denoising-grid,
+.proj-labels-grid {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 36px;
+}
+
+/* Improve spacing between sections */
+hr {
+  max-width: 1200px;
+  margin: 48px auto;
+  border: none;
+  border-top: 1px solid #333;
+}
+
+/* Make grid cells slightly smaller on large screens */
+@media (min-width: 1400px) {
+  .slice-cell,
+  .reveal-wrapper,
+  .proj-cell {
+    max-width: 180px;
+    margin: 0 auto;
+  }
+}
+
+/* Add subtle hover effect on sliders */
+.reveal-slider:hover .drag-line,
+.proj-slider:hover .proj-drag-line,
+.slice-slider:hover .slice-drag-line {
+  background: #00bfff;
+}
+
+.reveal-slider:hover .drag-circle,
+.proj-slider:hover .proj-drag-circle,
+.slice-slider:hover .slice-drag-circle {
+  border-color: #00bfff;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Improve section titles */
+.grid-description {
+  max-width: 800px;
+  margin: 48px auto 24px;
+  color: #fff;
+  background: #222;
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.grid-description h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.4em;  /* Reduced from 1.8em */
+  color: #00bfff;
+}
+
+/* Improve labels readability */
+.row-label,
+.col-label,
+.proj-label,
+.slice-label {
+  color: #888;
+  font-size: 0.9em;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Add at the end of the file */
+
+.page-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Smooth scrolling for better experience */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Improved header spacing */
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto 48px;
+  padding: 24px;
+}
+
+.author-list {
+  max-width: 900px;
+  margin: 24px auto;
+  text-align: center;
+  color: #888;
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+footer {
+  text-align: center;
+  padding: 48px 24px;
+  color: #666;
+  font-size: 0.9em;
+  margin-top: 64px;
+  border-top: 1px solid #333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 12px;
+  }
+  
+  .header-content h1 {
+    font-size: 1.8em;  /* Reduced from 2em */
+  }
+  
+  .grid-description h3 {
+    font-size: 1.2em;  /* Reduced from 1.4em */
+  }
+  
+  .grid-description {
+    font-size: 1em;
+  }
 }
