@@ -1,6 +1,16 @@
 <div class="header-content">
   <h1>Neighbor2Inverse: Self-Supervised Denoising
 for Low-Dose ROI Phase Contrast CT</h1>
+
+  <div class="author-list" style="font-size:1.1em; text-align:center; margin: 16px 0 8px 0; color:#eee;">
+    Johannes B. Thalhammer, Tina Dorosti, Sebastian Peterhansl, Florian Schaff, Daniela Pfeiffer, Franz Pfeiffer, Martin Donnelley, Ronan Smith, Marcus Kitchen, Jannis Ahlers, Lucy Costello, Lorenzo D’Amico, Kaye Morgan
+  </div>
+
+  <div class="abstract" style="max-width:900px; margin:0 auto 24px auto; font-size:1.1em; color:#eee; background:#222; padding:16px 24px; border-radius:8px;">
+    <b>Abstract—</b> Propagation-based X-ray phase-contrast imaging (PBI) provides high-contrast visualization of lung structures, but dose reduction is essential to make it as safe as possible. While convolutional neural network–based denoising with supervised training can achieve strong performance, acquiring large paired datasets of low- and high-dose images is often impractical, motivating the development of self-supervised methods.<br><br>
+    We propose Neighbor2Inverse, a self-supervised denoising approach for low-dose PBI computed tomography. Following the Neighbor2Neighbor principle, noisy projections are subsampled to generate two measurements with nearly identical object structures but independent noise realizations. These are reconstructed, and the resulting image pairs are used to train a denoising network in the reconstruction domain. We evaluate multiple variations of the framework and compare against state-of-the-art methods. Neighbor2Inverse achieves improved noise suppression while preserving structural detail, as confirmed by higher contrast-to-noise ratio, enhanced spatial resolution, and an improved composite quality index.<br><br>
+    Code and data are publicly available at <a href="https://github.com/J-3TO/Neighbor2Inverse" style="color:#00bfff;">https://github.com/J-3TO/Neighbor2Inverse</a>.
+  </div>
 </div>
 
 <hr>
