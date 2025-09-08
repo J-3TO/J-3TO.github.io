@@ -219,3 +219,68 @@ for (let row = 0; row < 4; row++) {
     setupFig4Slider(row, col);
   }
 }
+
+// --- Slice Denoising Sliders (Figure 5) ---
+const fig5Labels = [
+  "15ms", "Sparse", "Nei2Nei", "ProjSubsampling", "SinoSubsampling", "DataFidelityOrigSino", "DataFidelityVirtSino"
+];
+const fig5Rows = [
+  ["15ms", "15ms_zoom", "15ms2", "15ms2_zoom"],
+  ["Sparse", "Sparse_zoom", "Sparse2", "Sparse2_zoom"],
+  ["Nei2Nei", "Nei2Nei_zoom", "Nei2Nei2", "Nei2Nei2_zoom"],
+  ["ProjSubsampling", "ProjSubsampling_zoom", "ProjSubsampling2", "ProjSubsampling2_zoom"],
+  ["SinoSubsampling", "SinoSubsampling_zoom", "SinoSubsampling2", "SinoSubsampling2_zoom"],
+  ["DataFidelityOrigSino", "DataFidelityOrigSino_zoom", "DataFidelityOrigSino2", "DataFidelityOrigSino2_zoom"],
+  ["DataFidelityVirtSino", "DataFidelityVirtSino_zoom", "DataFidelityVirtSino2", "DataFidelityVirtSino2_zoom"]
+];
+
+// For Figure 5, each row has 4 images, each column is a method
+const fig5Grid = document.querySelector('.slice-denoising-grid-fig5');
+for (let row = 0; row < 4; row++) {
+  for (let col = 0; col < 7; col++) {
+    const cell = document.createElement('div');
+    cell.className = 'slice-cell';
+    // First two columns: just show image, no slider
+    if (col < 2) {
+      cell.innerHTML = `
+        <img src="./SliceDenoisingCompSparse/${fig5Rows[col][row]}.png" class="slice-img" alt="${fig5Rows[col][row]}">
+      `;
+    } else {
+      // Slider: left image is Sparse, right image is current method
+      cell.innerHTML = `
+        <img src="./SliceDenoisingCompSparse/${fig5Rows[1][row]}.png" class="slice-img">
+        <img src="./SliceDenoisingCompSparse/${fig5Rows[col][row]}.png" class="slice-img-fg" id="fig5-fg-${row}-${col}">
+        <div class="slice-slider">
+          <input type="range" min="0" max="100" value="50" id="fig5-slider-${row}-${col}">
+          <div class="slice-drag-line" id="fig5-line-${row}-${col}"></div>
+          <div class="slice-drag-circle" id="fig5-circle-${row}-${col}"></div>
+        </div>
+      `;
+    }
+    fig5Grid.appendChild(cell);
+  }
+}
+
+// Setup sliders for columns 2-6 (index 2-6)
+function setupFig5Slider(row, col) {
+  const slider = document.getElementById(`fig5-slider-${row}-${col}`);
+  const fg = document.getElementById(`fig5-fg-${row}-${col}`);
+  const line = document.getElementById(`fig5-line-${row}-${col}`);
+  const circle = document.getElementById(`fig5-circle-${row}-${col}`);
+
+  function update() {
+    const val = slider.value;
+    fg.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
+    line.style.left = val + '%';
+    circle.style.left = val + '%';
+  }
+  slider.addEventListener('input', update);
+  window.addEventListener('resize', update);
+  update();
+}
+
+for (let row = 0; row < 4; row++) {
+  for (let col = 2; col < 7; col++) {
+    setupFig5Slider(row, col);
+  }
+}
