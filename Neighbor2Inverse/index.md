@@ -17,8 +17,8 @@
 <div class="grid-description">
   <h3>Overview of the Neighbor2Inverse method</h3>
 </div>
-<div style="max-width:900px; margin:32px auto 24px auto; text-align:center;">
-  <img src="./Method/method.png" alt="Overview of the Neighbor2Inverse method">
+<div class="image-container">
+  <img src="./Method/method.png" alt="Overview of the Neighbor2Inverse method" class="method-figure">
 </div>
 <hr>
 
