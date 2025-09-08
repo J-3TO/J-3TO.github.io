@@ -154,3 +154,68 @@ for (let row = 0; row < 4; row++) {
     setupSliceSlider(row, col);
   }
 }
+
+// --- Slice Denoising Sliders (Figure 4) ---
+const fig4Labels = [
+  "200ms", "15ms", "ProjSubsamplingReg", "ProjSubsamplingNoReg", "SinoSubsampling", "DataFidelityOrigSino", "DataFidelityVirtSino"
+];
+const fig4Rows = [
+  ["200ms", "200ms_zoom", "200ms2", "200ms2_zoom"],
+  ["15ms", "15ms_zoom", "15ms2", "15ms2_zoom"],
+  ["ProjSubsamplingReg", "ProjSubsamplingReg_zoom", "ProjSubsamplingReg2", "ProjSubsamplingReg2_zoom"],
+  ["ProjSubsamplingNoReg", "ProjSubsamplingNoReg_zoom", "ProjSubsamplingNoReg2", "ProjSubsamplingNoReg2_zoom"],
+  ["SinoSubsampling", "SinoSubsampling_zoom", "SinoSubsampling2", "SinoSubsampling2_zoom"],
+  ["DataFidelityOrigSino", "DataFidelityOrigSino_zoom", "DataFidelityOrigSino2", "DataFidelityOrigSino2_zoom"],
+  ["DataFidelityVirtSino", "DataFidelityVirtSino_zoom", "DataFidelityVirtSino2", "DataFidelityVirtSino2_zoom"]
+];
+
+// For Figure 4, each row has 4 images, each column is a method
+const fig4Grid = document.querySelector('.slice-denoising-grid-fig4');
+for (let row = 0; row < 4; row++) {
+  for (let col = 0; col < 7; col++) {
+    const cell = document.createElement('div');
+    cell.className = 'slice-cell';
+    // First two columns: just show image, no slider
+    if (col < 2) {
+      cell.innerHTML = `
+        <img src="./SliceDenoisingCompNei2Nei/${fig4Rows[col][row]}.png" class="slice-img" alt="${fig4Rows[col][row]}">
+      `;
+    } else {
+      // Slider: left image is 15ms/zoom/2/2_zoom, right image is current method
+      cell.innerHTML = `
+        <img src="./SliceDenoisingCompNei2Nei/${fig4Rows[1][row]}.png" class="slice-img">
+        <img src="./SliceDenoisingCompNei2Nei/${fig4Rows[col][row]}.png" class="slice-img-fg" id="fig4-fg-${row}-${col}">
+        <div class="slice-slider">
+          <input type="range" min="0" max="100" value="50" id="fig4-slider-${row}-${col}">
+          <div class="slice-drag-line" id="fig4-line-${row}-${col}"></div>
+          <div class="slice-drag-circle" id="fig4-circle-${row}-${col}"></div>
+        </div>
+      `;
+    }
+    fig4Grid.appendChild(cell);
+  }
+}
+
+// Setup sliders for columns 2-6 (index 2-6)
+function setupFig4Slider(row, col) {
+  const slider = document.getElementById(`fig4-slider-${row}-${col}`);
+  const fg = document.getElementById(`fig4-fg-${row}-${col}`);
+  const line = document.getElementById(`fig4-line-${row}-${col}`);
+  const circle = document.getElementById(`fig4-circle-${row}-${col}`);
+
+  function update() {
+    const val = slider.value;
+    fg.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
+    line.style.left = val + '%';
+    circle.style.left = val + '%';
+  }
+  slider.addEventListener('input', update);
+  window.addEventListener('resize', update);
+  update();
+}
+
+for (let row = 0; row < 4; row++) {
+  for (let col = 2; col < 7; col++) {
+    setupFig4Slider(row, col);
+  }
+}

@@ -68,6 +68,24 @@
   <hr>
 
   <div class="grid-description">
+    <h3 style="margin-bottom: 8px;">Comparison of different regularization and subsampling strategies (Figure 4)</h3>
+    Interactive version of Figure 4. <b>Drag each slider to reveal the denoised image.</b>
+  </div>
+
+  <div class="slice-denoising-labels-grid-fig4">
+    <div class="slice-label">200ms</div>
+    <div class="slice-label">15ms</div>
+    <div class="slice-label">proj. subsampling<br> L<sub>Nei</sub>+L<sub>reg</sub></div>
+    <div class="slice-label">proj. subsampling<br> L<sub>Nei</sub></div>
+    <div class="slice-label">sino. subsampling<br> L<sub>Nei</sub></div>
+    <div class="slice-label">DataFidelityOrigSino<br> L<sub>Nei</sub>+L<sub>origSino</sub></div>
+    <div class="slice-label">DataFidelityVirtSino<br> L<sub>Nei</sub>+L<sub>virtSino</sub></div>
+  </div>
+  <div class="slice-denoising-grid-fig4"></div>
+
+  <hr>
+
+  <div class="grid-description">
     <h3 style="margin-bottom: 8px;">Denoising results of Neighbor2Inverse with different exposure times and projection views.</h3>
     Interactive version of Figure 6. <b>Drag each slider to reveal the denoised image.</b>
   </div>

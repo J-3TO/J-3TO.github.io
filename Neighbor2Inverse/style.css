@@ -520,6 +520,16 @@ body, html {
   padding: 0 36px;
 }
 
+/* Ensure Figure 4 grid matches Figure 3 width and padding */
+.slice-denoising-grid-fig4,
+.slice-denoising-labels-grid-fig4 {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 36px;
+  width: 100%;
+}
+
 /* Improve spacing between sections */
 hr {
   max-width: 1200px;
@@ -635,4 +645,26 @@ footer {
   .grid-description {
     font-size: 1em;
   }
+}
+
+/* Add to style.css for Figure 4 grid and labels */
+
+.slice-denoising-grid-fig4 {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  width: calc(100vw - 72px);
+  margin: 8px auto 24px auto;
+}
+.slice-denoising-labels-grid-fig4 {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  width: calc(100vw - 72px);
+  margin: 0 auto 8px auto;
+  text-align: center;
+}
+.slice-denoising-grid-fig4 .slice-cell,
+.slice-denoising-labels-grid-fig4 .slice-label {
+  /* Use same styles as Figure 3 for consistency */
 }
