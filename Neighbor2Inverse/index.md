@@ -1,12 +1,11 @@
-<div class="header-content">
-  <h1>Neighbor2Inverse: Self-Supervised Denoising
-for Low-Dose ROI Phase Contrast CT</h1>
+<link rel="stylesheet" href="style.css">
 
-  <div class="author-list" style="font-size:1.4em; text-align:center; margin: 16px 0 8px 0; color:#eee;">
+<div class="header-content">
+  <h1>Neighbor2Inverse: Self-Supervised Denoising for Low-Dose ROI Phase Contrast CT</h1>
+  <div class="author-list">
     Johannes B. Thalhammer, Tina Dorosti, Sebastian Peterhansl, Florian Schaff, Daniela Pfeiffer, Franz Pfeiffer, Martin Donnelley, Ronan Smith, Marcus Kitchen, Jannis Ahlers, Lucy Costello, Lorenzo D’Amico, Kaye Morgan
   </div>
-
-  <div class="abstract" style="max-width:900px; margin:0 auto 24px auto; font-size:1.4em; color:#eee; background:#222; padding:18px 28px; border-radius:8px;">
+  <div class="abstract">
     <b>Abstract—</b> Propagation-based X-ray phase-contrast imaging (PBI) provides high-contrast visualization of lung structures, but dose reduction is essential to make it as safe as possible. While convolutional neural network–based denoising with supervised training can achieve strong performance, acquiring large paired datasets of low- and high-dose images is often impractical, motivating the development of self-supervised methods.<br><br>
     We propose Neighbor2Inverse, a self-supervised denoising approach for low-dose PBI computed tomography. Following the Neighbor2Neighbor principle, noisy projections are subsampled to generate two measurements with nearly identical object structures but independent noise realizations. These are reconstructed, and the resulting image pairs are used to train a denoising network in the reconstruction domain. We evaluate multiple variations of the framework and compare against state-of-the-art methods. Neighbor2Inverse achieves improved noise suppression while preserving structural detail, as confirmed by higher contrast-to-noise ratio, enhanced spatial resolution, and an improved composite quality index.<br><br>
     Code and data are publicly available at <a href="https://github.com/J-3TO/Neighbor2Inverse" style="color:#00bfff;">https://github.com/J-3TO/Neighbor2Inverse</a>.<br><br>
@@ -16,13 +15,14 @@ for Low-Dose ROI Phase Contrast CT</h1>
 
 <hr>
 <div class="grid-description">
-  <h3 style="margin-bottom: 8px;">Overview of the Neighbor2Inverse method</h3>
+  <h3>Overview of the Neighbor2Inverse method</h3>
 </div>
 <div style="max-width:900px; margin:32px auto 24px auto; text-align:center;">
-  <img src="./Method/method.png" alt="Overview of the Neighbor2Inverse method" style="width:100%; max-width:900px; border-radius:8px; background:#222;">
+  <img src="./Method/method.png" alt="Overview of the Neighbor2Inverse method">
 </div>
 <hr>
 
+<!-- Keep your style blocks for now, but consider moving them to style.css for further cleanliness -->
 <style>
 .header-content h1 {
   font-size: 3.2em;
@@ -353,6 +353,7 @@ body, html {
 }
 </style>
 
+
 <div class="grid-description">
   <h3 style="margin-bottom: 8px;">Denoising results of different methods on projections measured with 15 ms exposure time.</h3>
   Interactive version of Figure 2. <b>Drag each slider to reveal the denoised image.</b>
@@ -378,7 +379,22 @@ body, html {
 
 <hr>
 
+<div class="grid-description">
+  <h3 style="margin-bottom: 8px;">Denoising reconstructed CT images (15ms) by various methods</h3>
+  Interactive version of Figure 3. <b>Drag each slider to reveal the denoised image.</b>
+</div>
 
+<div class="slice-denoising-labels-grid">
+  <div class="slice-label">200ms</div>
+  <div class="slice-label">15ms</div>
+  <div class="slice-label">Nei2Nei</div>
+  <div class="slice-label">RecoFakeNoiseNet</div>
+  <div class="slice-label">Noise2Inverse</div>
+  <div class="slice-label">Neighbor2Inverse</div>
+</div>
+<div class="slice-denoising-grid"></div>
+
+<hr>
 
 <div class="grid-description">
   <h3 style="margin-bottom: 8px;">Denoising results of Neighbor2Inverse with different exposure times and projection views.</h3>
@@ -405,99 +421,9 @@ body, html {
     <div class="col-label">15ms</div>
   </div>
   <div class="grid-container">
+    <!-- Cells will be filled by JS -->
   </div>
 </div>
 
-<script>
-const gridRows = 7;
-const gridCols = 7;
-const gridContainer = document.querySelector('.grid-container');
-
-for (let i = 1; i <= gridRows; i++) {
-  for (let j = 1; j <= gridCols; j++) {
-    const idx = `r${i}c${j}`;
-    const noisyPath = `./GridImages/gridImagNoisy_${j-1}_${i-1}.png`;
-    const denoisedPath = `./GridImages/gridImageDenoised_${j-1}_${i-1}.png`;
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'reveal-wrapper';
-    wrapper.innerHTML = `
-      <div class="reveal-images">
-        <img src="${noisyPath}" class="reveal-img-bg">
-        <img src="${denoisedPath}" class="reveal-img-fg" id="fg${idx}">
-      </div>
-      <div class="reveal-slider">
-        <input type="range" min="0" max="100" value="50" id="slider${idx}">
-        <div class="drag-line" id="line${idx}"></div>
-        <div class="drag-circle" id="circle${idx}"></div>
-      </div>
-    `;
-    gridContainer.appendChild(wrapper);
-  }
-}
-
-function setupRevealSlider(sliderId, fgId, lineId, circleId) {
-  const slider = document.getElementById(sliderId);
-  const fg = document.getElementById(fgId);
-  const line = document.getElementById(lineId);
-  const circle = document.getElementById(circleId);
-
-  function update() {
-    const val = slider.value;
-    fg.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
-    line.style.left = val + '%';
-    circle.style.left = val + '%';
-  }
-  slider.addEventListener('input', update);
-  window.addEventListener('resize', update);
-  update();
-}
-
-for (let i = 1; i <= gridRows; i++) {
-  for (let j = 1; j <= gridCols; j++) {
-    const idx = `r${i}c${j}`;
-    setupRevealSlider(`slider${idx}`, `fg${idx}`, `line${idx}`, `circle${idx}`);
-  }
-}
-
-
-const projGrid = document.querySelector('.proj-denoising-grid');
-
-// Add 7 slider cells (columns 2–8)
-for (let n = 2; n <= 8; n++) {
-  const cell = document.createElement('div');
-  cell.className = 'proj-cell';
-  cell.innerHTML = `
-    <img src="./ProjDenoisingImages/denoisingProj_1.png" class="proj-img">
-    <img src="./ProjDenoisingImages/denoisingProj_${n}.png" class="proj-img-fg" id="proj-fg${n}">
-    <div class="proj-slider">
-      <input type="range" min="0" max="100" value="50" id="proj-slider${n}">
-      <div class="proj-drag-line" id="proj-line${n}"></div>
-      <div class="proj-drag-circle" id="proj-circle${n}"></div>
-    </div>
-  `;
-  projGrid.appendChild(cell);
-}
-
-function setupProjSlider(n) {
-  const slider = document.getElementById(`proj-slider${n}`);
-  const fg = document.getElementById(`proj-fg${n}`);
-  const line = document.getElementById(`proj-line${n}`);
-  const circle = document.getElementById(`proj-circle${n}`);
-
-  function update() {
-    const val = slider.value;
-    fg.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
-    line.style.left = val + '%';
-    circle.style.left = val + '%';
-  }
-  slider.addEventListener('input', update);
-  window.addEventListener('resize', update);
-  update();
-}
-
-for (let n = 2; n <= 8; n++) {
-  setupProjSlider(n);
-}
-
-</script>
+<!-- Reference your main.js file at the end of the body -->
+<script src="main.js"></script>
