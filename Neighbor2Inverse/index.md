@@ -9,10 +9,18 @@ for Low-Dose ROI Phase Contrast CT</h1>
   <div class="abstract" style="max-width:900px; margin:0 auto 24px auto; font-size:1.4em; color:#eee; background:#222; padding:18px 28px; border-radius:8px;">
     <b>Abstract—</b> Propagation-based X-ray phase-contrast imaging (PBI) provides high-contrast visualization of lung structures, but dose reduction is essential to make it as safe as possible. While convolutional neural network–based denoising with supervised training can achieve strong performance, acquiring large paired datasets of low- and high-dose images is often impractical, motivating the development of self-supervised methods.<br><br>
     We propose Neighbor2Inverse, a self-supervised denoising approach for low-dose PBI computed tomography. Following the Neighbor2Neighbor principle, noisy projections are subsampled to generate two measurements with nearly identical object structures but independent noise realizations. These are reconstructed, and the resulting image pairs are used to train a denoising network in the reconstruction domain. We evaluate multiple variations of the framework and compare against state-of-the-art methods. Neighbor2Inverse achieves improved noise suppression while preserving structural detail, as confirmed by higher contrast-to-noise ratio, enhanced spatial resolution, and an improved composite quality index.<br><br>
-    Code and data are publicly available at <a href="https://github.com/J-3TO/Neighbor2Inverse" style="color:#00bfff;">https://github.com/J-3TO/Neighbor2Inverse</a>.
+    Code and data are publicly available at <a href="https://github.com/J-3TO/Neighbor2Inverse" style="color:#00bfff;">https://github.com/J-3TO/Neighbor2Inverse</a>.<br><br>
+    Under submission.
   </div>
 </div>
 
+<hr>
+<div class="grid-description">
+  <h3 style="margin-bottom: 8px;">Overview of the Neighbor2Inverse method</h3>
+</div>
+<div style="max-width:900px; margin:32px auto 24px auto; text-align:center;">
+  <img src="./Method/method.png" alt="Overview of the Neighbor2Inverse method" style="width:100%; max-width:900px; border-radius:8px; background:#222;">
+</div>
 <hr>
 
 <style>
