@@ -2,11 +2,11 @@
   <h1>Neighbor2Inverse: Self-Supervised Denoising
 for Low-Dose ROI Phase Contrast CT</h1>
 
-  <div class="author-list" style="font-size:1.1em; text-align:center; margin: 16px 0 8px 0; color:#eee;">
+  <div class="author-list" style="font-size:1.4em; text-align:center; margin: 16px 0 8px 0; color:#eee;">
     Johannes B. Thalhammer, Tina Dorosti, Sebastian Peterhansl, Florian Schaff, Daniela Pfeiffer, Franz Pfeiffer, Martin Donnelley, Ronan Smith, Marcus Kitchen, Jannis Ahlers, Lucy Costello, Lorenzo D’Amico, Kaye Morgan
   </div>
 
-  <div class="abstract" style="max-width:900px; margin:0 auto 24px auto; font-size:1.1em; color:#eee; background:#222; padding:16px 24px; border-radius:8px;">
+  <div class="abstract" style="max-width:900px; margin:0 auto 24px auto; font-size:1.4em; color:#eee; background:#222; padding:18px 28px; border-radius:8px;">
     <b>Abstract—</b> Propagation-based X-ray phase-contrast imaging (PBI) provides high-contrast visualization of lung structures, but dose reduction is essential to make it as safe as possible. While convolutional neural network–based denoising with supervised training can achieve strong performance, acquiring large paired datasets of low- and high-dose images is often impractical, motivating the development of self-supervised methods.<br><br>
     We propose Neighbor2Inverse, a self-supervised denoising approach for low-dose PBI computed tomography. Following the Neighbor2Neighbor principle, noisy projections are subsampled to generate two measurements with nearly identical object structures but independent noise realizations. These are reconstructed, and the resulting image pairs are used to train a denoising network in the reconstruction domain. We evaluate multiple variations of the framework and compare against state-of-the-art methods. Neighbor2Inverse achieves improved noise suppression while preserving structural detail, as confirmed by higher contrast-to-noise ratio, enhanced spatial resolution, and an improved composite quality index.<br><br>
     Code and data are publicly available at <a href="https://github.com/J-3TO/Neighbor2Inverse" style="color:#00bfff;">https://github.com/J-3TO/Neighbor2Inverse</a>.
@@ -219,6 +219,16 @@ body > div.container, .container, main {
 body, html {
   background: #181a1b !important;
   color: #eee !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+.page-content, .main-content, .header-content, .grid-labels-wrapper, .proj-denoising-grid, .proj-labels-grid {
+  max-width: calc(100vw - 48px); /* 24px border on each side */
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
 }
 
 .grid-labels-wrapper {
