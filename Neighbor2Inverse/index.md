@@ -43,6 +43,17 @@
 
   <hr>
 
+  <div class="grid-description">
+    <h3 style="margin-bottom: 8px;">Comparison of denoising methods on clinical CT pulmonary angiograms</h3>
+    <b>Drag each slider to reveal the Low dose image.</b>
+  </div>
+
+  <div class="comp-methods-updated-grid" id="pe-grid">
+    <!-- Cells will be filled by JS -->
+  </div>
+
+  <hr>
+
 
 
   <div class="grid-description">

@@ -15,6 +15,78 @@ function setupRevealSlider(sliderId, fgId, lineId, circleId) {
   update();
 }
 
+// --- PE Figure: Comparison of denoising methods on clinical CT pulmonary angiograms ---
+const peData = [
+  { file: 'full_slice.png',       label: 'Full Slice',               interactive: false },
+  { file: 'high_dose.png',        label: 'Normal dose',              interactive: false },
+  { file: 'low_dose.png',         label: 'Low dose',                 interactive: false },
+  { file: 'Gauss_filter.png',     label: 'Gauss filter',             interactive: true  },
+  { file: 'bm3d.png',             label: 'BM3D',                     interactive: true  },
+  { file: 'TV.png',               label: 'Total Variation',          interactive: true  },
+  { file: 'wavelet.png',          label: 'Wavelet denoising',        interactive: true  },
+  { file: 'bilat_filter.png',     label: 'bilateral filter',         interactive: true  },
+  { file: 'supervised.png',       label: 'FakeNoise UNetSlice',      interactive: true  },
+  { file: 'Nei2Nei.png',          label: 'Nei2Nei Projs',            interactive: true  },
+  { file: 'Noise2Inverse.png',    label: 'Noise2Inverse',            interactive: true  },
+  { file: 'blind2unblind.png',    label: 'Blind2Unblind',            interactive: true  },
+  { file: 'proj2proj.png',        label: 'Proj2Proj',                interactive: true  },
+  { file: 'zeroshotn2n.png',      label: 'ZeroShotN2N',              interactive: true  },
+  { file: 'filter2noise.png',     label: 'Filter2Noise',             interactive: true  },
+  { file: 'neighbor2inverse.png', label: 'Neighbor2Inverse (ours)',  interactive: true  },
+];
+
+const peBasePath = './PEImages/';
+const peLowDose  = peBasePath + 'low_dose.png';
+const peGrid     = document.getElementById('pe-grid');
+
+peData.forEach((item, idx) => {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'comp-methods-updated-cell-wrapper';
+
+  const label = document.createElement('div');
+  label.className = 'comp-methods-updated-label';
+  label.textContent = item.label;
+  wrapper.appendChild(label);
+
+  const cell = document.createElement('div');
+  cell.className = 'comp-methods-updated-cell';
+
+  if (!item.interactive) {
+    cell.innerHTML = `<img src="${peBasePath}${item.file}" class="slice-img" alt="${item.label}">`;
+  } else {
+    cell.innerHTML = `
+      <img src="${peLowDose}" class="slice-img">
+      <img src="${peBasePath}${item.file}" class="slice-img-fg" id="pe-fg-${idx}">
+      <div class="slice-slider">
+        <input type="range" min="0" max="100" value="50" id="pe-slider-${idx}">
+        <div class="slice-drag-line" id="pe-line-${idx}"></div>
+        <div class="slice-drag-circle" id="pe-circle-${idx}"></div>
+      </div>
+    `;
+  }
+
+  wrapper.appendChild(cell);
+  peGrid.appendChild(wrapper);
+});
+
+peData.forEach((item, idx) => {
+  if (!item.interactive) return;
+  const slider = document.getElementById(`pe-slider-${idx}`);
+  const fg     = document.getElementById(`pe-fg-${idx}`);
+  const line   = document.getElementById(`pe-line-${idx}`);
+  const circle = document.getElementById(`pe-circle-${idx}`);
+
+  function updatePe() {
+    const val = slider.value;
+    fg.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
+    line.style.left   = val + '%';
+    circle.style.left = val + '%';
+  }
+  slider.addEventListener('input', updatePe);
+  window.addEventListener('resize', updatePe);
+  updatePe();
+});
+
 // --- Grid Sliders (Neighbor2Inverse Figure 6) ---
 const gridRows = 7;
 const gridCols = 7;
