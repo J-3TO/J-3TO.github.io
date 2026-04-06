@@ -471,3 +471,18 @@ footer {
   .abstract { padding: 16px 18px; }
   .grid-description { padding: 12px 16px; }
 }
+
+@media (max-width: 600px) {
+  /* Drop comparison grids from 8 → 4 columns so cells are readable in portrait */
+  .comp-methods-updated-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Scale down drag handle circles proportionally to small cells */
+  .proj-drag-circle,
+  .slice-drag-circle,
+  .drag-circle {
+    width: 14px;
+    height: 14px;
+  }
+}
