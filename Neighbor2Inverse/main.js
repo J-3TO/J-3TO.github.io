@@ -142,7 +142,7 @@ const compMethodsUpdatedData = [
   { file: 'neighbor2inverse.png', label: 'Neighbor2Inverse (ours)',  interactive: true  },
 ];
 
-const cmuBasePath = './SliceDenoisingCompMethods_updated/image_0/';
+const cmuBasePath = './SliceDenoisingCompMethods_updated/image_1/';
 const cmuLowDose  = cmuBasePath + 'low_dose.png';
 const cmuGrid     = document.querySelector('.comp-methods-updated-grid');
 
@@ -214,7 +214,7 @@ const compMethodsUpdatedData2 = [
   { file: 'neighbor2inverse.png', label: 'Neighbor2Inverse (ours)',  interactive: true  },
 ];
 
-const cmuBasePath2 = './SliceDenoisingCompMethods_updated/image_1/';
+const cmuBasePath2 = './SliceDenoisingCompMethods_updated/image_0/';
 const cmuLowDose2  = cmuBasePath2 + 'low_dose.png';
 const cmuGrid2     = document.getElementById('comp-methods-updated-grid-2');
 
