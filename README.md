@@ -297,7 +297,7 @@
 
   <div class="pub-card">
     <p class="pub-title">Artifact Reduction in Undersampled 3D Cone-Beam CTs using a Hybrid 2D-3D CNN Framework</p>
-    <p class="pub-authors"><strong>Johannes Thalhammer*</strong>, Tina Dorosti*, Sebastian Peterhansl, Daniela Pfeiffer, Franz Pfeiffer, Florian Schaff <span style="font-size:0.85em; color:#717897;">(*contributed equally)</span></p>
+    <p class="pub-authors"><strong>Johannes Thalhammer</strong>, Tina Dorosti, Sebastian Peterhansl, Daniela Pfeiffer, Franz Pfeiffer, Florian Schaff <span style="font-size:0.85em; color:#717897;"></span></p>
     <div class="pub-links">
       <a href="https://arxiv.org/abs/2602.08727" target="_blank">
         <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
