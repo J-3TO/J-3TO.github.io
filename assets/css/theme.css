@@ -1,0 +1,130 @@
+/* ============================================================
+   Shared theme for all pages: palette, base type, links, and
+   the light/dark toggle button. Page-specific styles live in
+   assets/css/home.css and Neighbor2Inverse/style.css.
+   Color palette adapted from linear.app
+   ============================================================ */
+
+/* ── Design tokens ───────────────────────────────────────────
+   Light is the default. Dark applies when the toggle sets
+   data-theme="dark" on <html> (see assets/js/theme.js), or,
+   before the toggle has been used / without JavaScript, when
+   the system prefers dark.                                     */
+:root {
+  --bg:            #ffffff;
+  --bg-subtle:     #f8f8f8;
+  --bg-hover:      #f4f4f5;
+  --text:          #282a30;   /* headings, titles, own name */
+  --text-body:     #3c4149;   /* paragraphs, author lists   */
+  --muted:         #6f6e77;   /* summaries, labels, footer  */
+  --faint:         #86848d;   /* separators                 */
+  --rule:          #e9e8ea;
+  --ring:          rgba(0, 0, 0, 0.08);
+  --link:          #5e6ad2;   /* indigo accent */
+  --link-hover:    #282a30;
+  --tile-line:     rgba(94, 106, 210, 0.11);
+  color-scheme: only light;   /* "only": browsers must not auto-darken it */
+}
+
+:root[data-theme="dark"] {
+  --bg:            #08090a;
+  --bg-subtle:     #0f1011;
+  --bg-hover:      #141516;
+  --text:          #f7f8f8;
+  --text-body:     #d0d6e0;
+  --muted:         #8a8f98;
+  --faint:         #62666d;
+  --rule:          #23252a;
+  --ring:          rgba(255, 255, 255, 0.08);
+  --link:          #828fff;
+  --link-hover:    #f7f8f8;
+  --tile-line:     rgba(130, 143, 255, 0.10);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:            #08090a;
+    --bg-subtle:     #0f1011;
+    --bg-hover:      #141516;
+    --text:          #f7f8f8;
+    --text-body:     #d0d6e0;
+    --muted:         #8a8f98;
+    --faint:         #62666d;
+    --rule:          #23252a;
+    --ring:          rgba(255, 255, 255, 0.08);
+    --link:          #828fff;
+    --link-hover:    #f7f8f8;
+    --tile-line:     rgba(130, 143, 255, 0.10);
+    color-scheme: dark;
+  }
+}
+
+/* ── Base ────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-body);
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+a:hover { color: var(--link-hover); }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Light/dark toggle button (each page positions it) ───── */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.theme-toggle:focus-visible { border-radius: 8px; }
+
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Show the moon in light mode (click → dark), the sun in dark mode */
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun  { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
