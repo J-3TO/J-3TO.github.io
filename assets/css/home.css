@@ -158,6 +158,15 @@
   object-fit: cover;
 }
 
+/* Non-square figures (e.g. plots): show the whole image instead of cropping. */
+.pub-thumb.plot {
+  background: #fff;
+}
+
+.pub-thumb.plot img {
+  object-fit: contain;
+}
+
 /* Before/after comparison slider (driven by assets/js/compare-slider.js).
    --pos is the divider position: the top image shows left of it. */
 .compare {

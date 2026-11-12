@@ -89,9 +89,8 @@ permalink: /
   </div>
 
   <div class="pub">
-    <div class="pub-thumb tile">
-      <span class="tile-venue">Radiology: AI</span>
-      <span class="tile-year">2024</span>
+    <div class="pub-thumb plot">
+      <img src="/images/thumbs/hemorrhagethumbnail.png" alt="Plot of hemorrhage detection AUC-ROC versus number of views: U-Net stays near full-view performance while FBP and TV drop at sparse views">
     </div>
     <div>
       <a class="pub-title" href="https://pubs.rsna.org/doi/full/10.1148/ryai.230275" target="_blank" rel="noopener">Improving Automated Hemorrhage Detection at Sparse-View CT via U-Net–Based Artifact Reduction</a>
