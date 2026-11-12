@@ -5,9 +5,6 @@ permalink: /
 
 <script src="/assets/js/theme.js?v={{ site.time | date: '%s' }}"></script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap">
 <link rel="stylesheet" href="/assets/css/theme.css?v={{ site.time | date: '%s' }}">
 <link rel="stylesheet" href="/assets/css/home.css?v={{ site.time | date: '%s' }}">
 <script src="/assets/js/compare-slider.js?v={{ site.time | date: '%s' }}" defer></script>
@@ -102,6 +99,9 @@ permalink: /
   </div>
 
   <!-- ══════════ Footer ══════════ -->
-  <p class="site-footer">Design inspired by <a href="https://jonbarron.info/" target="_blank" rel="noopener">Jon Barron's website</a>.</p>
+  <footer class="site-footer">
+    <a href="/privacy/">Privacy policy</a>
+    <span>Design inspired by <a href="https://jonbarron.info/" target="_blank" rel="noopener">Jon Barron's website</a>.</span>
+  </footer>
 
 </div>
