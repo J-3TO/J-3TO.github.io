@@ -33,6 +33,19 @@ permalink: /
   <h2 class="section-title">Research</h2>
   <h3 class="subsection-title">First-author publications</h3>
 
+  <div class="pub">
+    <div class="pub-thumb plot">
+      <img src="/images/thumbs/detectorGap_Thumbnail.png" alt="Sinogram with detector gaps (original) next to the same sinogram with the gaps filled in (interpolated), with a zoomed-in crop of one gap below each">
+    </div>
+    <div>
+      <a class="pub-title" href="https://arxiv.org/abs/2611.15614" target="_blank" rel="noopener">Learning-Based Interpolation of Detector Gaps in Photon-Counting X-ray Imaging</a>
+      <p class="pub-authors"><span class="me">Johannes B. Thalhammer</span>, Patrick Ilg, Tina Dorosti, Sebastian Peterhansl, Theresa Hiu, Daniel Frey, Zijin Huang, Florian Schaff, Daniela Pfeiffer, Franz Pfeiffer</p>
+      <p class="pub-venue"><em>arXiv preprint</em>, 2026</p>
+      <p class="pub-links"><a href="https://arxiv.org/abs/2611.15614" target="_blank" rel="noopener">arXiv</a><span class="sep">/</span><a href="https://github.com/J-3TO/detectorGapRemoval_Pix2Pix" target="_blank" rel="noopener">code</a></p>
+      <p class="pub-tldr">Generative models (WGAN-GP and Pix2Pix) fill the gaps between photon-counting detector tiles, changing only the gap pixels while keeping their intensity statistics realistic. Pix2Pix gives the most natural fills.</p>
+    </div>
+  </div>
+
   <!-- Paper with a before/after comparison slider as thumbnail.
        Images are the Neighbor2Inverse (ours) and Low dose (15ms) panels of the
        first comparison figure on the demo page (SliceDenoisingCompMethods_updated/image_1).
@@ -67,7 +80,7 @@ permalink: /
       <p class="pub-authors"><span class="me">Johannes Thalhammer</span>, Tina Dorosti, Sebastian Peterhansl, Daniela Pfeiffer, Franz Pfeiffer, Florian Schaff</p>
       <p class="pub-venue"><em>arXiv preprint</em>, 2026</p>
       <p class="pub-links"><a href="https://arxiv.org/abs/2602.08727" target="_blank" rel="noopener">arXiv</a><span class="sep">/</span><a href="https://github.com/J-3TO/2D-3DCNN_sparseview" target="_blank" rel="noopener">code</a></p>
-      <p class="pub-tldr">A 2D U-Net extracts per-slice features and a 3D decoder fuses them across the volume, giving slice-consistent artifact reduction at low computational cost.</p>
+      <p class="pub-tldr">A 2D U-Net extracts per-slice features and a 3D decoder fuses them across the volume, giving slice-consistent artifact reduction at managable computational cost.</p>
     </div>
   </div>
 
